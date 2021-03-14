@@ -1,6 +1,6 @@
 using System;
 
-namespace Corrente.Models
+namespace Corrente.Models.ViewModels
 {
     public class ErrorViewModel
     {

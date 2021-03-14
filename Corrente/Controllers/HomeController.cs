@@ -1,4 +1,4 @@
-﻿using Corrente.Models;
+﻿using Corrente.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
