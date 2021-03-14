@@ -17,7 +17,8 @@ namespace Corrente.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Projeto de TCC Corrente do Bem";
+            ViewData["email"] = "email@exemplo.com";
 
             return View();
         }
