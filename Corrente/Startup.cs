@@ -36,8 +36,9 @@ namespace Corrente
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<CorrenteContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("CorrenteContext")));
+            services.AddDbContext<CorrenteContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("CorrenteContext"), 
+                builder => builder.MigrationsAssembly("Corrente")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
