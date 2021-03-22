@@ -14,6 +14,8 @@ namespace Corrente.Data
         {
         }
 
-        public DbSet<Corrente.Models.TipoInstituicao> TipoInstituicao { get; set; }
+        public DbSet<TipoInstituicao> TipoInstituicao { get; set; }
+        public DbSet<Instituicao> Instituicao{ get; set; }
+        public DbSet<Doacao> Doacao { get; set; }
     }
 }
