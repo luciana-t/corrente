@@ -1,4 +1,4 @@
-﻿using Corrente.Models;
+﻿using Corrente.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,8 @@ namespace Corrente.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Projeto de TCC Corrente do Bem";
+            ViewData["email"] = "email@exemplo.com";
 
             return View();
         }
