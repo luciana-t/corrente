@@ -15,6 +15,7 @@ namespace Corrente.Models
         //public Reference Social { get; set; }
         public string Telefone { get; set; }
         public TipoInstituicao TipoInstituicao { get; set; }
+        public int TipoInstituicaoId { get; set; }
         public ICollection<Doacao> Doacoes { get; set; } = new List<Doacao>();
 
         public Instituicao() { }
