@@ -23,6 +23,7 @@ namespace Corrente.Services
 
         public void Insert(Instituicao obj)
         {
+            obj.TipoInstituicao = _context.TipoInstituicao.First();
             _context.Add(obj);
             _context.SaveChanges();
         } 
