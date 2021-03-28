@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Corrente.Data;
+using Corrente.Services;
 
 namespace Corrente
 {
@@ -41,6 +42,7 @@ namespace Corrente
                 builder => builder.MigrationsAssembly("Corrente")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<InstituicaoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
