@@ -20,5 +20,11 @@ namespace Corrente.Services
         {
             return _context.Instituicao.ToList();
         }
+
+        public void Insert(Instituicao obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        } 
     }
 }
