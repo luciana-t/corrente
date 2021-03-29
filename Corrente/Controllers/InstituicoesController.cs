@@ -1,4 +1,5 @@
 ﻿using Corrente.Models;
+using Corrente.Models.ViewModels;
 using Corrente.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,11 @@ namespace Corrente.Controllers
     public class InstituicoesController : Controller
     {
         private readonly InstituicaoService _instituicaoService;
-        public InstituicoesController(InstituicaoService instituicaoService)
+        public readonly TipoInstituicaoService _tipoInstituicaoService;
+        public InstituicoesController(InstituicaoService instituicaoService, TipoInstituicaoService tipoInstituicaoService)
         {
             _instituicaoService = instituicaoService;
+            _tipoInstituicaoService = tipoInstituicaoService;
         }
 
         public IActionResult Index()
@@ -25,7 +28,9 @@ namespace Corrente.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var tipoInstituicoes = _tipoInstituicaoService.FindAll();
+            var viewModel = new InstituicaoFormViewModel { TipoInstituicoes = tipoInstituicoes };
+            return View(viewModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
