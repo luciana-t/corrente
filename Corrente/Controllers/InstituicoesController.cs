@@ -39,5 +39,28 @@ namespace Corrente.Controllers
             _instituicaoService.Insert(instituicao);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete (int? id) //Same name View
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _instituicaoService.FindById(id.Value);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _instituicaoService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
