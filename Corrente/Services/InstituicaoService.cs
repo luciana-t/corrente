@@ -26,5 +26,17 @@ namespace Corrente.Services
             _context.Add(obj);
             _context.SaveChanges();
         } 
+
+        public Instituicao FindById(int id)
+        {
+            return _context.Instituicao.FirstOrDefault(obj => obj.Id == id);
+        }
+
+        public void Remove (int id)
+        {
+            var obj = _context.Instituicao.Find(id);
+            _context.Instituicao.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
