@@ -1,0 +1,55 @@
+﻿@model Corrente.Models.Instituicao
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>ViewData["Title"]</h2>
+
+<div>
+    <h4>Instituicao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DtCadastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DtCadastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pontuacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pontuacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoInstituicao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoInstituicao.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Edit</a>
+    <a asp-action="Index">Back to List</a>
+</div>
