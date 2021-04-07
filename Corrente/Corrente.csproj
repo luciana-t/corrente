@@ -7,9 +7,13 @@
 
   <ItemGroup>
     <Compile Remove="Models\NewFolder\**" />
+    <Compile Remove="Services\NewFolder\**" />
     <Content Remove="Models\NewFolder\**" />
+    <Content Remove="Services\NewFolder\**" />
     <EmbeddedResource Remove="Models\NewFolder\**" />
+    <EmbeddedResource Remove="Services\NewFolder\**" />
     <None Remove="Models\NewFolder\**" />
+    <None Remove="Services\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

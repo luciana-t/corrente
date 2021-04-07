@@ -1,0 +1,44 @@
+﻿@model Corrente.Models.ViewModels.InstituicaoFormViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Instituicao</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Instituicao.Id"/>
+            <div class="form-group">
+                <label asp-for="Instituicao.Nome" class="control-label"></label>
+                <input asp-for="Instituicao.Nome" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituicao.Descricao" class="control-label"></label>
+                <input asp-for="Instituicao.Descricao" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituicao.Pontuacao" class="control-label"></label>
+                <input asp-for="Instituicao.Pontuacao" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituicao.DtCadastro" class="control-label"></label>
+                <input asp-for="Instituicao.DtCadastro" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituicao.Telefone" class="control-label"></label>
+                <input asp-for="Instituicao.Telefone" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Instituicao.TipoInstituicaoId" class="control-label"></label>
+                <select asp-for="Instituicao.TipoInstituicaoId" asp-items="@(new SelectList(Model.TipoInstituicoes, "Id", "Name"))" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+        <p></p>
+    </div>
+</div>

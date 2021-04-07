@@ -1,6 +1,7 @@
 ﻿using Corrente.Models;
 using Corrente.Models.ViewModels;
 using Corrente.Services;
+using Corrente.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,62 @@ namespace Corrente.Controllers
         {
             _instituicaoService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _instituicaoService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _instituicaoService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            List<TipoInstituicao> tiposInstituicao = _tipoInstituicaoService.FindAll();
+            InstituicaoFormViewModel viewModel = new InstituicaoFormViewModel { Instituicao = obj, TipoInstituicoes = tiposInstituicao };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit (int id, Instituicao instituicao)
+        {
+            if (id != instituicao.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _instituicaoService.Update(instituicao);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
+
         }
     }
 }
