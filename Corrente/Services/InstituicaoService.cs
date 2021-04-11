@@ -18,38 +18,39 @@ namespace Corrente.Services
             _context = context;
         }
 
-        public List<Instituicao> FindAll()
+        public async Task<List<Instituicao>> FindAllAsync()
         {
-            return _context.Instituicao.ToList();
+            return await _context.Instituicao.ToListAsync();
         }
 
-        public void Insert(Instituicao obj)
+        public async Task InsertAsync(Instituicao obj)
         {
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         } 
 
-        public Instituicao FindById(int id)
+        public async Task<Instituicao> FindByIdAsync(int id)
         {
-            return _context.Instituicao.Include(obj =>obj.TipoInstituicao).FirstOrDefault(obj => obj.Id == id);
+            return await _context.Instituicao.Include(obj =>obj.TipoInstituicao).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Remove (int id)
+        public async Task RemoveAsync (int id)
         {
-            var obj = _context.Instituicao.Find(id);
+            var obj = await _context.Instituicao.FindAsync(id);
             _context.Instituicao.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public void Update(Instituicao obj)
+        public async Task UpdateAsync(Instituicao obj)
         {
-            if (!_context.Instituicao.Any(x => x.Id == obj.Id))
+            bool hasAny = await _context.Instituicao.AnyAsync(x => x.Id == obj.Id);
+            if (!hasAny)
             {
                 throw new NotFoundException("Id not found");
             }
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
