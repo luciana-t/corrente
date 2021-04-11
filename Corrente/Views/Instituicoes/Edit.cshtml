@@ -10,26 +10,31 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <input type="hidden" asp-for="Instituicao.Id"/>
+            <input type="hidden" asp-for="Instituicao.Id" />
             <div class="form-group">
                 <label asp-for="Instituicao.Nome" class="control-label"></label>
                 <input asp-for="Instituicao.Nome" class="form-control" />
+                <span asp-validation-for="Instituicao.Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Instituicao.Descricao" class="control-label"></label>
                 <input asp-for="Instituicao.Descricao" class="form-control" />
+                <span asp-validation-for="Instituicao.Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Instituicao.Pontuacao" class="control-label"></label>
                 <input asp-for="Instituicao.Pontuacao" class="form-control" />
+                <span asp-validation-for="Instituicao.Pontuacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Instituicao.DtCadastro" class="control-label"></label>
                 <input asp-for="Instituicao.DtCadastro" class="form-control" />
+                <span asp-validation-for="Instituicao.DtCadastro" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Instituicao.Telefone" class="control-label"></label>
                 <input asp-for="Instituicao.Telefone" class="form-control" />
+                <span asp-validation-for="Instituicao.Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Instituicao.TipoInstituicaoId" class="control-label"></label>
@@ -42,3 +47,7 @@
         <p></p>
     </div>
 </div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

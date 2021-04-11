@@ -8,12 +8,16 @@ namespace Corrente.Models
     public class Instituicao
     {
         public int Id { get; set; }
+        [Required(ErrorMessage ="Campo {0} é obrigatório")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} da Instituição deve contar entre {2} e {1} caracteres")]
         public string Nome { get; set; }
 
         [Display(Name = "Descrição")]
+        [Required(ErrorMessage = "Campo {0} é obrigatório")]
         public string Descricao { get; set; }
 
         [Display(Name = "Pontuação")]
+        [Range(0.0, 10.0, ErrorMessage = "{0} deve ser entre 0 e 10")]
         [DisplayFormat(DataFormatString = "{0:F1}")]
         public double Pontuacao { get; set; }
 

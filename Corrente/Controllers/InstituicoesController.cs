@@ -38,6 +38,12 @@ namespace Corrente.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Instituicao instituicao)
         {
+            if (!ModelState.IsValid)
+            {
+                var tipoInstituicoes = _tipoInstituicaoService.FindAll();
+                var ViewModel = new InstituicaoFormViewModel { Instituicao = instituicao, TipoInstituicoes = tipoInstituicoes };
+                return View(ViewModel);
+            }
             _instituicaoService.Insert(instituicao);
             return RedirectToAction(nameof(Index));
         }
@@ -101,6 +107,12 @@ namespace Corrente.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult Edit (int id, Instituicao instituicao)
         {
+            if (!ModelState.IsValid)
+            {
+                var tipoInstituicoes = _tipoInstituicaoService.FindAll();
+                var ViewModel = new InstituicaoFormViewModel { Instituicao = instituicao, TipoInstituicoes = tipoInstituicoes };
+                return View(ViewModel);
+            }
             if (id != instituicao.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
