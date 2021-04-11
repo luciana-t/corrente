@@ -34,5 +34,24 @@ namespace Corrente.Services
                 .OrderByDescending(x => x.DtCriada)
                 .ToListAsync();
         }
+
+        public async Task<List<IGrouping<TipoInstituicao,Doacao>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.Doacao select obj;
+            if (minDate.HasValue)
+            {
+                result = result.Where(x => x.DtCriada >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.DtCriada <= maxDate.Value);
+            }
+            return await result
+                .Include(x => x.Instituicao)
+                .Include(x => x.Instituicao.TipoInstituicao)
+                .OrderByDescending(x => x.DtCriada)
+                .GroupBy(x => x.Instituicao.TipoInstituicao)
+                .ToListAsync();
+        }
     }
 }
