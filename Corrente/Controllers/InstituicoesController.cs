@@ -21,35 +21,41 @@ namespace Corrente.Controllers
             _tipoInstituicaoService = tipoInstituicaoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _instituicaoService.FindAll();
+            var list = await _instituicaoService.FindAllAsync();
 
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var tipoInstituicoes = _tipoInstituicaoService.FindAll();
+            var tipoInstituicoes = await _tipoInstituicaoService.FindAllAsync();
             var viewModel = new InstituicaoFormViewModel { TipoInstituicoes = tipoInstituicoes };
             return View(viewModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Instituicao instituicao)
+        public async Task<IActionResult> Create(Instituicao instituicao)
         {
-            _instituicaoService.Insert(instituicao);
+            if (!ModelState.IsValid)
+            {
+                var tipoInstituicoes = await _tipoInstituicaoService.FindAllAsync();
+                var ViewModel = new InstituicaoFormViewModel { Instituicao = instituicao, TipoInstituicoes = tipoInstituicoes };
+                return View(ViewModel);
+            }
+            await _instituicaoService.InsertAsync(instituicao);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete (int? id) //Same name View
+        public async Task<IActionResult> Delete (int? id) //Same name View
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
-            var obj = _instituicaoService.FindById(id.Value);
+            var obj = await _instituicaoService.FindByIdAsync(id.Value);
             if(obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" }); ;
@@ -59,20 +65,20 @@ namespace Corrente.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _instituicaoService.Remove(id);
+            await _instituicaoService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not proided" });
             }
 
-            var obj = _instituicaoService.FindById(id.Value);
+            var obj = await _instituicaoService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
@@ -80,34 +86,40 @@ namespace Corrente.Controllers
             return View(obj);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
-            var obj = _instituicaoService.FindById(id.Value);
+            var obj = await _instituicaoService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
-            List<TipoInstituicao> tiposInstituicao = _tipoInstituicaoService.FindAll();
+            List<TipoInstituicao> tiposInstituicao = await _tipoInstituicaoService.FindAllAsync();
             InstituicaoFormViewModel viewModel = new InstituicaoFormViewModel { Instituicao = obj, TipoInstituicoes = tiposInstituicao };
             return View(viewModel);
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Edit (int id, Instituicao instituicao)
+        public async Task<IActionResult> Edit (int id, Instituicao instituicao)
         {
+            if (!ModelState.IsValid)
+            {
+                var tipoInstituicoes = await _tipoInstituicaoService.FindAllAsync();
+                var ViewModel = new InstituicaoFormViewModel { Instituicao = instituicao, TipoInstituicoes = tipoInstituicoes };
+                return View(ViewModel);
+            }
             if (id != instituicao.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
             try
             {
-                _instituicaoService.Update(instituicao);
+                await _instituicaoService.UpdateAsync(instituicao);
                 return RedirectToAction(nameof(Index));
             }
             catch (NotFoundException e)
