@@ -46,6 +46,7 @@ namespace Corrente
             services.AddScoped<SeedingService>();
             services.AddScoped<InstituicaoService>();
             services.AddScoped<TipoInstituicaoService>();
+            services.AddScoped<DoacaoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
