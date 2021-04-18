@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>.</p>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Entre na sua conta do Corrente do Bem</legend>
+
+                    <div class="form-group">
+                        <label for="email" class="col-lg-2 control-label">E-mail</label>
+                        <div class="col-lg-10">
+                            <input type="email" name="email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-lg-2 control-label">Senha</label>
+                        <div class="col-lg-10">
+                            <input type="password" name="password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12 col-lg-offset-1">
+                            <div class="checkbox">
+                                <label for="Input_RememberMe">
+                                    <input type="checkbox" data-val="true" data-val-required="The Remember me? field is required." id="Input_RememberMe" name="Input.RememberMe" value="true" />
+                                    Remember me?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+</body>

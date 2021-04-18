@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "RegisterInstituição";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar Instituição</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" asp-action="RegisterInstituicao">
+            <fieldset>
+                <legend> </legend>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Nome</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="nome" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Endereço</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="nome" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Telefone</label>
+                    <div class="col-lg-10">
+                        <input type="tel" name="nome" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Responsável</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="nome" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">E-mail</label>
+                    <div class="col-lg-10">
+                        <input type="email" name="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-2 control-label">Senha</label>
+                    <div class="col-lg-10">
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-2 control-label">Confirme Senha</label>
+                    <div class="col-lg-10">
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+</div>

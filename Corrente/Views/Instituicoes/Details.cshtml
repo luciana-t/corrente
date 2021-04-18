@@ -3,11 +3,70 @@
 @{
     ViewData["Title"] = "Details";
 }
+<h6>.</h6>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-<h2>@ViewData["Title"]</h2>
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
 
-<div>
-    <h4>Instituicao</h4>
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        h2 {
+            text-align: center;
+        }
+
+        h5 {
+            text-align: justify;
+            text-wrap: initial;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        h6 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="background-color:lightgray">
+
+    <div>
+
+        <h1 class="col-lg-offset-1">
+            Cinema Jardim</h1class="col-lg-offset-1">
+            <br />
+            <h4 class="col-lg-offset-1">Em 2009, a instituição criou o Centro de Análise do Cinema e do Audiovisual, juntamente com o Cebrap (Centro Brasileiro de Análise e Planejamento), organizou o simpósio “Transnational Brazilian Cinema”, no Barbican Centre, em Londres, juntamente com a Embaixada Brasileira em Londres e apoio do Itamaraty (Ministério das Relações Exteriores), realizou a Mostra Internacional “Live Cinema” em novembro no Sesc Pompéia (contando com a Lei Rouanet/ Ministério da Cultura e patrocínio da Petrobrás), em São Paulo. Em parceria com a Secretaria do Audiovisual do Ministério da Cultura, idealizou e realizou a gestão do Prêmio SAV para Publicação de Pesquisa em Cinema e Audiovisual, que resultou na publicação dos três livros premiados, que foram lançados em outubro/2010: Economia da Cultura e Cinema, Entre Lanternas Mágicas e Cinematógrafos e O Filme nas Telas.</h4>
+            <br />
+            <br />
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <img src="img_snow.jpg" alt="Snow" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="img_forest.jpg" alt="Forest" style="width:100%">
+        </div>
+        <div class="column">
+            <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+        </div>
+    </div>
+
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,8 +107,11 @@
             @Html.DisplayFor(model => model.TipoInstituicao.Name)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Edit</a>
-    <a asp-action="Index">Back to List</a>
-</div>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Edit</a>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    <div></div>
+</body>
